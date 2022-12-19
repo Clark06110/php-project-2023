@@ -1,0 +1,3 @@
+# YOOOOOOO
+# Pour utiliser le code en git à mon avis il va falloire que tu copies les fichiers codes dans ton dossier ou ton compilateur php execute le php
+# Sachant que le projet pour l'instant s'articule sur le index.php / projec-header.php / project-footer.php / assets pour l'instant le reste c'est mes cours mais y'a du code de base de base de données etc...
