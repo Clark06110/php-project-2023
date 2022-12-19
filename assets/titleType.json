@@ -1,0 +1,18 @@
+{
+    "titleType": [
+    "movie",
+    "musicVideo",
+    "podcastEpisode",
+    "podcastSeries",
+    "short",
+    "tvEpisode",
+    "tvMiniSeries",
+    "tvMovie",
+    "tvPilot",
+    "tvSeries",
+    "tvShort",
+    "tvSpecial",
+    "video",
+    "videoGame"
+    ]
+}
