@@ -66,10 +66,34 @@ curl_close($curl);
 if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
+    $result = json_decode($response);
     echo "<pre>";
-	print_r($response);
+	//print_r($response);
+    echo "</pre>";
+    echo "<pre>";
+	//print_r($result);
     echo "</pre>";
     
+    for ($i = 0; $i < 10; $i++) {
+        echo "<div style='margin-bottom: 50px'>";
+        print_r($result->results[$i]->primaryImage->url);echo "<br>";
+        print_r($result->results[$i]->primaryImage->caption->plainText);echo "<br>";
+        print_r($result->results[$i]->titleType->text);echo "<br>";
+        print_r($result->results[$i]->titleText->text);echo "<br>";
+        print_r($result->results[$i]->releaseDate->year);echo "<br>";
+        print_r($result->results[$i]->releaseDate->month);echo "<br>";
+        print_r($result->results[$i]->releaseDate->day);
+        echo "</div>";
+    }
+    
+    
+    //print_r($response->results->primaryImage->url);
+    //print_r($response->results->primaryImage->caption->plainText);
+    //print_r($response->results->titleType->text);
+    //print_r($response->results->titleText->text);
+    //print_r($response->results->releaseDate->year);
+    //print_r($response->results->releaseDate->month);
+    //print_r($response->results->releaseDate->day);
 }
 
 $file = 'assets/genres.json';
