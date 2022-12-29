@@ -1,113 +1,144 @@
-<?php
-$title = "Accueil";
-require_once "components/project-header.php";
-?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie Store</title>
+  <link rel="stylesheet" type="text/css" href="style.css"> 
 
-<?php
-try
-{
-    $bdd = new PDO('mysql:host=localhost;dbname=supinfo;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-    echo "<p>CONNECT TO THE DATABASE</p>";
-}
-catch (Exception $e)
-{
-    echo "NO CONNECT TO DATABASE <br>";
-    die('Erreur : ' . $e->getMessage());
-}
-/*
-$req = "CREATE TABLE movies (
-    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    year INT(4) NOT NULL,
-    genre VARCHAR(255) NOT NULL
-  );";
-$res = $bdd->query($req);
+<!-- Include the jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-$req = "INSERT INTO movies (title, year, genre)
-VALUES ('The Shawshank Redemption', 1994, 'Drama'),
-       ('The Godfather', 1972, 'Crime'),
-       ('The Godfather: Part II', 1974, 'Crime'),
-       ('The Dark Knight', 2008, 'Action');";
-$res = $bdd->query($req);
-*/
-$req = "SELECT * FROM movies";
-$res = $bdd->query($req);
-// print_r($res);
+<script defer>
+  // Wait for the document to be ready
+  $(document).ready(function() {
+    // Attach a submit event handler to the search form
+    $('#search-form').submit(function(event) {
+      // Prevent the form from being submitted
+      event.preventDefault();
 
-?>
+      // Get the search query from the input field
+      var query = $('#search-input').val();
 
+      // Send an AJAX request to the server to search for movies
+      $.ajax({
+        url: 'search.php',
+        type: 'POST',
+        data: {
+          query: query
+        },
+        success: function(response) {
+          // Display the search results
+          $('#search-results').html(response);
+        }
+      });
+    });
+  });
+</script>
+</head>
 
-<?php
+<body>
 
-$curl = curl_init();
+  <nav>
+    <ul>
+      <li><a href="/test.php">Home</a></li>
+      <li><a href="#">Movies</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="/panier.php">Panier</a></li>
+    </ul>
+    <!-- Add a search bar to the page -->
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Search for a movie...">
+      <button type="submit">Search</button>
+    </form>
+  </nav>
 
-curl_setopt_array($curl, [
-	CURLOPT_URL => "https://moviesdatabase.p.rapidapi.com/titles?titleType=movie&genre=Action&limit=10&startYear=2000",
-    // CURLOPT_URL => "https://moviesdatabase.p.rapidapi.com/titles/utils/genres",
-    // CURLOPT_URL => "https://moviesdatabase.p.rapidapi.com/titles/utils/titleTypes",
-	CURLOPT_RETURNTRANSFER => true,
-	CURLOPT_FOLLOWLOCATION => true,
-	CURLOPT_ENCODING => "",
-	CURLOPT_MAXREDIRS => 50,
-	CURLOPT_TIMEOUT => 30,
-	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	CURLOPT_CUSTOMREQUEST => "GET",
-	CURLOPT_HTTPHEADER => [
-		"X-RapidAPI-Host: moviesdatabase.p.rapidapi.com",
-		"X-RapidAPI-Key:  323dacdd96msh37cc676e3519eb7p11507ejsn64b86b1405ac"
-	],
-]);
-
-$response = curl_exec($curl);
-$err = curl_error($curl);
-
-curl_close($curl);
-
-if ($err) {
-	echo "cURL Error #:" . $err;
-} else {
-    $result = json_decode($response);
-    echo "<pre>";
-	//print_r($response);
-    echo "</pre>";
-    echo "<pre>";
-	//print_r($result);
-    echo "</pre>";
+  <header>
+    <!-- Add a search bar to the page -->
+    <form id="add-product-form">
+      <input type="text" id="add-product" placeholder="Search for a movie...">
+      <button type="submit">VOIR PANIER</button>
+    </form>
     
-    for ($i = 0; $i < 10; $i++) {
-        echo "<div style='margin-bottom: 50px'>";
-        print_r($result->results[$i]->primaryImage->url);echo "<br>";
-        print_r($result->results[$i]->primaryImage->caption->plainText);echo "<br>";
-        print_r($result->results[$i]->titleType->text);echo "<br>";
-        print_r($result->results[$i]->titleText->text);echo "<br>";
-        print_r($result->results[$i]->releaseDate->year);echo "<br>";
-        print_r($result->results[$i]->releaseDate->month);echo "<br>";
-        print_r($result->results[$i]->releaseDate->day);
-        echo "</div>";
+    <form action="clear-cart.php" method="post">
+      <input type="submit" value="Clear Cart">
+    </form>
+
+    <h1>Movie Store</h1>
+  </header>
+  
+  <main>
+    <h1>HELLO MAIN</h1>
+    <?php
+    
+    try
+    {
+      $conn = new PDO('mysql:host=localhost;dbname=supinfo;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+      // echo "<p>CONNECT TO THE DATABASE</p>";
     }
+    catch (Exception $e)
+    {
+      echo "NO CONNECT TO DATABASE <br>";
+      die('Erreur : ' . $e->getMessage());
+    }
+    session_start();
+
+    // Display the cart
+    echo "<h1>Cart</h1>";
+    echo "<ul>";
+    if (!empty($_SESSION['cart'])) {
+        // The cart is empty
+        foreach ($_SESSION['cart'] as $product) {
+        echo "<pre>";
+        echo "PRODUCT<br>";
+        print_r($product);
+        echo "</pre>";
+        }
+    } else {
+        // The cart is not empty
+        echo "<li>The CART is empty !!!</li>";
+    }
+    echo "</ul>";
+
+
+    // RECUP DATA FOR DISPLAY ALL MOVIES 
+    $stmt1 = $conn->query("SELECT * FROM movies");
+    echo "<br>RECUP DATA FOR DISPLAY ALL MOVIES<br>";
+    echo "<div id='search-results' class='movie-collection'>";
+    while ($row = $stmt1->fetch()) {
+      
+      echo "<div class='movie-card'>";
+      echo "<img src='" . $row['imageURL'] . "' alt='Movie Poster'>";
+      // echo "<img src='https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5' alt='Movie Poster'>";
+      echo "<h2 class='movie-title'>" . $row['title'] . "</h2>";
+      echo "<p class='movie-description'>" . $row['description'] . "</p>";
+      echo "<p class='movie-genre'>Genre: " . $row['genre'] . "</p>";
+      echo "<p class='movie-year'>Year: " . $row['year'] . "</p>";
+      echo "<p class='movie-price'>Price: " . $row['price'] . " €</p>";
+      // display the add to cart button
+      // echo "<button onclick=\"addToCart('" . $row["title"] . "', '" . $row["price"] . "')\">Add to Cart</button>";
+      // echo "<li>" . $row['title'] . " - " . $row['price'] ." <a href='?add=" . $row['id'] . "'>Add to Cart</a></li>";
+      // echo "<button class='movie-button' onclick=\"addProduct('" . $row[id] ."')\">ADD CART</button>";
+
+
+      echo "<form action='cart.php' method='post'>";
+      // echo "<input type='hidden' name='product_id' value='123'>";
+      echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
+      echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
+      echo "<input type='submit' value='Add to cart'>";
+      echo "</form>";
+      echo "</div>";
+    }
+    echo "</div>";
+    // close the connection
+    $conn = null;
+
+
+    ?>
+
     
-    
-    //print_r($response->results->primaryImage->url);
-    //print_r($response->results->primaryImage->caption->plainText);
-    //print_r($response->results->titleType->text);
-    //print_r($response->results->titleText->text);
-    //print_r($response->results->releaseDate->year);
-    //print_r($response->results->releaseDate->month);
-    //print_r($response->results->releaseDate->day);
-}
-
-$file = 'assets/genres.json';
-$data = file_get_contents($file);
-$result = json_decode($data);
-/*
-echo "<pre>";
-print_r($result->genres);
-echo "</pre>";
-*/
-?>
-
-
-<h1>HELLO PROJECT</h1>
-<?php
-require_once "components/project-footer.php";
-?>
+  </main>
+  
+  <footer>
+    <p>Copyright 2021 Movie Store</p>
+  </footer>
+</body>
+</html>

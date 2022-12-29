@@ -1,0 +1,104 @@
+.log {
+  background-color: red;
+}
+.form-contact {
+    display: flex; 
+    flex-direction: column; 
+    width: 400px;
+}
+body {
+    background-color: #8b4513;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  nav {
+    background-color: #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin: 0 10px;
+  }
+  
+  nav a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  
+  .movie-card {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .movie-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .movie-collection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .movie-title {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .movie-description {
+    margin: 10px 0;
+    font-size: 14px;
+    text-align: center;
+  }
+  
+  .movie-genre {
+    margin: 10px 0;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+  }
+  
+  .movie-year {
+    margin: 10px 0;
+    font-size: 12px;
+    text-align: center;
+    color: #666;
+  }
+  
+  
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
