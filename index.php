@@ -39,10 +39,19 @@
 
   <nav>
     <ul>
-      <li><a href="/test.php">Home</a></li>
-      <li><a href="#">Movies</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="/panier.php">Panier</a></li>
+      <li><a href="/">Home</a></li>
+      <div class="menu">
+        Categories
+        <li class="categories">
+          <a href="/category.php?genre=action">Action</a>
+          <a href="/category.php?genre=drama">Drama</a>
+          <a href="/category.php?genre=crime">crime</a>
+          <a href="/category.php?genre=sci-fi">Science fiction</a>
+          <a href="/category.php?genre=western">Western</a>
+          <a href="/category.php?genre=animation">Animation</a>
+        </li>
+      </div>
+      <li><a href="/cart.php">Panier</a></li>
     </ul>
     <!-- Add a search bar to the page -->
     <form id="search-form">
@@ -52,11 +61,6 @@
   </nav>
 
   <header>
-    <!-- Add a search bar to the page -->
-    <form id="add-product-form">
-      <input type="text" id="add-product" placeholder="Search for a movie...">
-      <button type="submit">VOIR PANIER</button>
-    </form>
     
     <form action="clear-cart.php" method="post">
       <input type="submit" value="Clear Cart">
@@ -81,27 +85,9 @@
     }
     session_start();
 
-    // Display the cart
-    echo "<h1>Cart</h1>";
-    echo "<ul>";
-    if (!empty($_SESSION['cart'])) {
-        // The cart is empty
-        foreach ($_SESSION['cart'] as $product) {
-        echo "<pre>";
-        echo "PRODUCT<br>";
-        print_r($product);
-        echo "</pre>";
-        }
-    } else {
-        // The cart is not empty
-        echo "<li>The CART is empty !!!</li>";
-    }
-    echo "</ul>";
-
-
     // RECUP DATA FOR DISPLAY ALL MOVIES 
     $stmt1 = $conn->query("SELECT * FROM movies");
-    echo "<br>RECUP DATA FOR DISPLAY ALL MOVIES<br>";
+    // echo "<br>RECUP DATA FOR DISPLAY ALL MOVIES<br>";
     echo "<div id='search-results' class='movie-collection'>";
     while ($row = $stmt1->fetch()) {
       
@@ -110,6 +96,7 @@
       // echo "<img src='https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5' alt='Movie Poster'>";
       echo "<h2 class='movie-title'>" . $row['title'] . "</h2>";
       echo "<p class='movie-description'>" . $row['description'] . "</p>";
+      echo "<p class='movie-description'>" . $row['id'] . "</p>";
       echo "<p class='movie-genre'>Genre: " . $row['genre'] . "</p>";
       echo "<p class='movie-year'>Year: " . $row['year'] . "</p>";
       echo "<p class='movie-price'>Price: " . $row['price'] . " €</p>";
@@ -119,10 +106,11 @@
       // echo "<button class='movie-button' onclick=\"addProduct('" . $row[id] ."')\">ADD CART</button>";
 
 
-      echo "<form action='cart.php' method='post'>";
+      echo "<form action='add-to-cart.php' method='post'>";
       // echo "<input type='hidden' name='product_id' value='123'>";
       echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
       echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
+      echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
       echo "<input type='submit' value='Add to cart'>";
       echo "</form>";
       echo "</div>";

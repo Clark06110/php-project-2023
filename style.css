@@ -102,3 +102,16 @@ body {
     text-align: center;
   }
   
+  .categories {
+    display: none;
+  }
+  .menu:hover .categories {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+  }
+  .categories a:hover {
+    border-bottom: 2px solid red;
+  }
