@@ -1,18 +1,9 @@
 <?php
-$title = "Accueil";
-require_once "components/project-header.php";
+$title = "BDD";
+require_once "components_project/project-header.php";
 ?>
 
 <?php
-
-// connect to the database
-/*
-$host = "localhost";
-$user = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
-*/
-
 try {
 	// $conn = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 	$conn = new PDO('mysql:host=localhost;dbname=supinfo;charset=utf8', 'root', 'root', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -22,6 +13,24 @@ try {
 } catch(PDOException $e) {
 	die("Connection failed: " . $e->getMessage());
 }
+
+//CREATE THE USERS TABLE
+/*
+$sql = "CREATE TABLE users (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	pseudo VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+)";
+try {
+	$conn->exec($sql);
+	echo "Table users created successfully";
+} catch(PDOException $e) {
+	echo "Error creating table: " . $e->getMessage();
+}
+
+$conn = null;
+*/
 
 // CREATE THE TABLE MOVIES
 /*
@@ -114,5 +123,5 @@ $conn = null;
 
 <h1>SI TU VOIS CE MESSAGE C'EST SUREMENT QUE TOUT C'EST BIEN PASSÉ SI TU AS LANCÉ UNE REQUÊTE 👍</h1>
 <?php
-require_once "components/project-footer.php";
+require_once "components_project/project-footer.php";
 ?>

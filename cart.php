@@ -1,9 +1,7 @@
-<nav>
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/cart.php">Panier</a></li>
-    </ul>
-</nav>
+<?php
+$title = "CART";
+require_once "components_project/project-header.php";
+?>
   
 <?php
 session_start();
@@ -28,7 +26,7 @@ if (!empty($_SESSION['cart'])) {
       echo "<td>" . $product[0] . "</td>";
       echo "<td>";
       // Add a delete button for the product
-      echo "<form action='delete-product-cart.php' method='post'>";
+      echo "<form action='hooks_project/delete-product-cart.php' method='post'>";
       echo "<input type='hidden' name='cart_id' value='" . $product[0] . "'>";
       echo "<input type='submit' value='Delete'>";
       echo "</form>";
@@ -42,4 +40,8 @@ if (!empty($_SESSION['cart'])) {
     echo "<li>The CART is empty !!!</li>";
 }
 echo "</ul>";
+?>
+
+<?php
+require_once "components_project/project-footer.php";
 ?>

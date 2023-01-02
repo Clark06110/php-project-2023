@@ -1,3 +1,7 @@
+<?php
+$title = "CATEGORY";
+require_once "components_project/project-header.php";
+?>
 
 <?php
     try
@@ -13,10 +17,8 @@
 
     // Check if the "id" parameter is set in the URL
     if (isset($_GET['genre'])) {
-        // Retrieve the value of the "id" parameter
+        // Retrieve the value of the "genre" parameter
         $genre = $_GET['genre'];
-        // Do something with the value of the "id" parameter, such as query a database or display a message
-        echo "The genre value is: " . $genre;
     }
 
     // Prepare the SQL statement
@@ -43,14 +45,8 @@
         echo "<p class='movie-genre'>Genre: " . $row['genre'] . "</p>";
         echo "<p class='movie-year'>Year: " . $row['year'] . "</p>";
         echo "<p class='movie-price'>Price: " . $row['price'] . " €</p>";
-        // display the add to cart button
-        // echo "<button onclick=\"addToCart('" . $row["title"] . "', '" . $row["price"] . "')\">Add to Cart</button>";
-        // echo "<li>" . $row['title'] . " - " . $row['price'] ." <a href='?add=" . $row['id'] . "'>Add to Cart</a></li>";
-        // echo "<button class='movie-button' onclick=\"addProduct('" . $row[id] ."')\">ADD CART</button>";
-
-
-        echo "<form action='add-to-cart.php' method='post'>";
-        // echo "<input type='hidden' name='product_id' value='123'>";
+        
+        echo "<form action='hooks_project/add-to-cart.php' method='post'>";
         echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
         echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
         echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
@@ -67,4 +63,8 @@
 
 
 
+?>
+
+<?php
+require_once "components_project/project-footer.php";
 ?>

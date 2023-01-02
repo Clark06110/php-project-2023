@@ -34,10 +34,10 @@ if (isset($_POST['query'])) {
       echo "<p class='movie-year'>Year: " . $donnee['year'] . "</p>";
       echo "<p class='movie-price'>Price: " . $donnee['price'] . " €</p>";
       // display the add to cart button
-      echo "<form action='cart.php' method='post'>";
-      // echo "<input type='hidden' name='product_id' value='123'>";
-      echo "<input type='hidden' name='product_title' value=" . $row['title'] . "'>";
-      echo "<input type='hidden' name='product_price' value=" . $row['price'] . "'>";
+      echo "<form action='add-to-cart.php' method='post'>";
+      echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
+      echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
+      echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
       echo "<input type='submit' value='Add to cart'>";
       echo "</form>";
       echo "</div>";
