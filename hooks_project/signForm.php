@@ -57,22 +57,23 @@
             $expire = time() + 60 * 5;
 
             // Set the cookie
-            setcookie('loggedin', true, $expire);
-            $_SESSION['success-login-form'] = 'CONNEXION SUCCESS';
+            setcookie('loggedin', true, $expire, "/");
+            setcookie('pseudo', $user['pseudo'], $expire, "/");
+            // $_SESSION['success-login-form'] = 'CONNEXION SUCCESS';
             if (isset($_SESSION['error-login-form'])) {
                 unset($_SESSION['error-login-form']);
             }
-            header('Location: index.php');
+            header('Location: ../index.php');
         } else {
             // Login was unsuccessful, display an error message
             echo "Invalid email or password.";
             $_SESSION['error-login-form'] = "Invalid email or password.";
-            header('Location: login.php');
+            header('Location: ../login.php');
         }
     } else {
         echo "Password differents.";
         $_SESSION['error-login-form'] = "Password differents.";
-        header('Location: login.php');
+        header('Location: ../login.php');
     }
 
     $conn = null;

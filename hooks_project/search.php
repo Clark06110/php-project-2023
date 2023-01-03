@@ -22,19 +22,17 @@ if (isset($_POST['query'])) {
   
     $req = $bdd->query($sql);
     
-    // echo "<div class='movie-collection'>";
     while ($donnee = $req->fetch()) { 
       // print_r($donnee);
       echo "<div class='movie-card'>";
       echo "<img src='" . $donnee[imageURL] . "' alt='Movie Poster'>";
-      // echo "<img src='https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5' alt='Movie Poster'>";
       echo "<h2 class='movie-title'>" . $donnee['title'] . "</h2>";
       echo "<p class='movie-description'>" . $donnee['description'] . "</p>";
       echo "<p class='movie-genre'>Genre: " . $donnee['genre'] . "</p>";
       echo "<p class='movie-year'>Year: " . $donnee['year'] . "</p>";
       echo "<p class='movie-price'>Price: " . $donnee['price'] . " €</p>";
       // display the add to cart button
-      echo "<form action='add-to-cart.php' method='post'>";
+      echo "<form action='hooks_project/add-to-cart.php' method='post'>";
       echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
       echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
       echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";

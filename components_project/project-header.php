@@ -24,7 +24,7 @@
 
                 // Send an AJAX request to the server to search for movies
                 $.ajax({
-                    url: 'search.php',
+                    url: 'hooks_project/search.php',
                     type: 'POST',
                     data: {
                     query: query
@@ -55,6 +55,11 @@
         </div>
         <?php
             // Check if the user is logged in
+            /*
+            echo "<pre>";
+            print_r($_COOKIE["pseudo"]);
+            echo "</pre>";
+            */
             if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == true) {
             // If the user is logged in, display the navbar anchor
             echo '<li><a href="/cart.php">Cart</a></li>';

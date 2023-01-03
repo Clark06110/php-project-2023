@@ -82,7 +82,7 @@ VALUES (5, 'The Shawshank Redemption', 1994, 'Drama', 'Two imprisoned men bond o
 	(5, 'Titanic', 1997, 'Drama', 'A seventeen-year-old aristocrat falls in love with a kind, but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
 	(5, 'The Great Gatsby', 2013, 'Drama', 'A writer and wall street trader, Nick, finds himself drawn to the past and lifestyle of his millionaire neighbor, Jay Gatsby.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
 	(5, 'The Wolf of Wall Street', 2013, 'Biography', 'Based on the true story of Jordan Belfort, from his rise to a wealthy stock-broker living the high life to his fall involving crime, corruption and the federal government.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
-	(5, 'Avatar', 2009, 'Action', 'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
+	(5, 'Avatar', 2009, 'Action', 'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.', 'https://drive.google.com/uc?id=1x26zz3BrSUV9zM6bumAvIlYQHx2p5UGR'),
 	(5, 'The Revenant', 2015, 'Adventure', 'A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
 	(5, 'Doctor Strange', 2016, 'Action', 'While on a journey of physical and spiritual healing, a brilliant neurosurgeon is drawn into the world of the mystic arts.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
 	(5, 'Black Panther', 2018, 'Action', 'T''Challa, the King of Wakanda, rises to the throne in the isolated, technologically advanced African nation, but his claim is challenged by a vengeful outsider who was a childhood victim of T''Challa''s father''s mistake.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
@@ -117,7 +117,6 @@ $conn = null;
 
 // https://drive.google.com/file/d/1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5/view?usp=share_link
 // https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5
-
 
 ?>
 

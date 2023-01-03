@@ -32,6 +32,6 @@ print_r($_SESSION['cart']);
 echo "</pre>";
 
 // Redirect back to the cart page
-header("Location: cart.php");
+header("Location: ../cart.php");
 
 ?>
