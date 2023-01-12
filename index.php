@@ -1,6 +1,9 @@
+// composer require google/apiclient:^2.0
+
 <?php
 $title = "Accueil";
 require_once "components_project/project-header.php";
+require_once 'vendor/autoload.php';
 ?>
 
   <header>
@@ -31,18 +34,29 @@ require_once "components_project/project-header.php";
     }
     session_start();
 
+    $client = new Google_Client();
+    // $client->setAuthConfig('path/to/credentials.json');
+    $client->addScope(Google_Service_Drive::DRIVE);
+
+    $service = new Google_Service_Drive($client);
+
     // RECUP DATA FOR DISPLAY ALL MOVIES 
     $stmt1 = $conn->query("SELECT * FROM movies");
     // echo "<br>RECUP DATA FOR DISPLAY ALL MOVIES<br>";
     echo "<div id='search-results' class='movie-collection'>";
     while ($row = $stmt1->fetch()) {
       
+
+      $fileId = $row['id'];
+
+      $response = $service->files->get($fileId, array('fields' => 'webContentLink'));
+
+      $webContentLink = $response->webContentLink;
+      
       echo "<div class='movie-card'>";
-      echo "<img src='" . $row['imageURL'] . "' alt='Movie Poster'>";
-      // echo "<img src='https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5' alt='Movie Poster'>";
+      echo "<img src='" . $webContentLink . "' alt='Movie Poster'>";
       echo "<h2 class='movie-title'>" . $row['title'] . "</h2>";
       echo "<p class='movie-description'>" . $row['description'] . "</p>";
-      echo "<p class='movie-description'>" . $row['id'] . "</p>";
       echo "<p class='movie-genre'>Genre: " . $row['genre'] . "</p>";
       echo "<p class='movie-year'>Year: " . $row['year'] . "</p>";
       echo "<p class='movie-price'>Price: " . $row['price'] . " €</p>";

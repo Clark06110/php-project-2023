@@ -41,7 +41,7 @@ require_once "components_project/project-header.php";
         // echo "<img src='https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5' alt='Movie Poster'>";
         echo "<h2 class='movie-title'>" . $row['title'] . "</h2>";
         echo "<p class='movie-description'>" . $row['description'] . "</p>";
-        echo "<p class='movie-description'>" . $row['id'] . "</p>";
+        // echo "<p class='movie-description'>" . $row['id'] . "</p>";
         echo "<p class='movie-genre'>Genre: " . $row['genre'] . "</p>";
         echo "<p class='movie-year'>Year: " . $row['year'] . "</p>";
         echo "<p class='movie-price'>Price: " . $row['price'] . " €</p>";

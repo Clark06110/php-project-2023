@@ -32,6 +32,7 @@ try {
 $conn = null;
 */
 
+
 // CREATE THE TABLE MOVIES
 /*
 $sql = "CREATE TABLE movies (
@@ -56,7 +57,7 @@ $conn = null;
 
 
 // SEND MOVIES TO THE TABLE 
-/*
+
 $sql = "INSERT INTO movies (price, title, year, genre, description, imageURL)
 VALUES (5, 'The Shawshank Redemption', 1994, 'Drama', 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.', 'https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5'),
 	(5, 'The Godfather', 1972, 'Crime', 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.', 'https://drive.google.com/uc?id=1YoN_kVQJbefL05GGRNew9YEMTeLN_3P7'),
@@ -109,7 +110,7 @@ try {
 
 // close the connection
 $conn = null;
-*/
+
 
 
 
