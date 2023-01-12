@@ -32,18 +32,25 @@
     if ($user) {
         if (password_verify($password, $user['password'])){
             // Login
-            $expire = time() + 60 * 5;
+            $userInfo = array($user['id'], $user['pseudo'], $user['email']);
+
+            $expire = time() + 60 * (4 * 60);
+
 
             // Set the cookie
             setcookie('loggedin', true, $expire, "/");
-            setcookie('pseudo', $user['pseudo'], $expire, "/");
-            print_r($_COOKIE['loggedin']);
+            setcookie('user-info', json_encode($userInfo), $expire, "/");
             echo "<br>";
-            print_r($_COOKIE['pseudo']);
             // $_SESSION['success-login-form'] = 'CONNEXION SUCCESS';
             if (isset($_SESSION['error-login-form'])) {
                 unset($_SESSION['error-login-form']);
             }
+            /*
+            echo "<pre>";
+            $data = json_decode($_COOKIE['user-info'], true);
+            print_r($data);
+            echo "</pre>";
+            */
             header('Location: ../index.php');
         } else {
             $_SESSION['error-login-form'] = "Invalid password";

@@ -67,6 +67,14 @@
         ?>
         <li><a href="/login.php">Log In</a></li>
         </ul>
+        
+        <?php
+        // Display pseudo if logged
+        if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 1) {
+            $data = json_decode($_COOKIE['user-info'], true);
+            echo "<p class='pseudo'> " . $data[1] . "</p>";
+        } 
+        ?>
         <!-- Add a search bar to the page -->
         <form id="search-form">
         <input type="text" id="search-input" placeholder="Search for a movie...">

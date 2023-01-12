@@ -38,7 +38,6 @@ require_once "components_project/project-header.php";
     foreach ($results as $row) {
     echo "<div class='movie-card'>";
         echo "<img src='" . $row['imageURL'] . "' alt='Movie Poster'>";
-        // echo "<img src='https://drive.google.com/uc?id=1DJZW6es2NTEzkghl-wdNFrqafzvA2ZN5' alt='Movie Poster'>";
         echo "<h2 class='movie-title'>" . $row['title'] . "</h2>";
         echo "<p class='movie-description'>" . $row['description'] . "</p>";
         // echo "<p class='movie-description'>" . $row['id'] . "</p>";
@@ -46,12 +45,15 @@ require_once "components_project/project-header.php";
         echo "<p class='movie-year'>Year: " . $row['year'] . "</p>";
         echo "<p class='movie-price'>Price: " . $row['price'] . " €</p>";
         
-        echo "<form action='hooks_project/add-to-cart.php' method='post'>";
-        echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
-        echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
-        echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
-        echo "<input type='submit' value='Add to cart'>";
-        echo "</form>";
+        // Display ADD TO CART if logged
+        if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 1) {
+            echo "<form action='hooks_project/add-to-cart.php' method='post'>";
+            echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
+            echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
+            echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
+            echo "<input type='submit' value='Add to cart'>";
+            echo "</form>";
+        } 
         echo "</div>";
 
     }

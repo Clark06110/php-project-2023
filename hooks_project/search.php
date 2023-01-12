@@ -25,19 +25,22 @@ if (isset($_POST['query'])) {
     while ($donnee = $req->fetch()) { 
       // print_r($donnee);
       echo "<div class='movie-card'>";
-      echo "<img src='" . $donnee[imageURL] . "' alt='Movie Poster'>";
+      echo "<img src='" . $donnee['imageURL'] . "' alt='Movie Poster'>";
       echo "<h2 class='movie-title'>" . $donnee['title'] . "</h2>";
       echo "<p class='movie-description'>" . $donnee['description'] . "</p>";
       echo "<p class='movie-genre'>Genre: " . $donnee['genre'] . "</p>";
       echo "<p class='movie-year'>Year: " . $donnee['year'] . "</p>";
       echo "<p class='movie-price'>Price: " . $donnee['price'] . " €</p>";
-      // display the add to cart button
-      echo "<form action='hooks_project/add-to-cart.php' method='post'>";
-      echo "<input type='hidden' name='product_id' value='" . $row['id'] . "'>";
-      echo "<input type='hidden' name='product_title' value='" . $row['title'] . "'>";
-      echo "<input type='hidden' name='product_price' value='" . $row['price'] . "'>";
-      echo "<input type='submit' value='Add to cart'>";
-      echo "</form>";
+      
+      // Display ADD TO CART if logged
+      if (isset($_COOKIE['loggedin']) && $_COOKIE['loggedin'] == 1) {
+        echo "<form action='hooks_project/add-to-cart.php' method='post'>";
+        echo "<input type='hidden' name='product_title' value='" . $donnee['title'] . "'>";
+        echo "<input type='hidden' name='product_price' value='" . $donnee['price'] . "'>";
+        echo "<input type='hidden' name='product_id' value='" . $donnee['id'] . "'>";
+        echo "<input type='submit' value='Add to cart'>";
+        echo "</form>";
+      } 
       echo "</div>";
     }
   }

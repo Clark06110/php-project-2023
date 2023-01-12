@@ -15,9 +15,9 @@ try {
 }
 
 //CREATE THE USERS TABLE
-/*
+
 $sql = "CREATE TABLE users (
-    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id VARCHAR(255) NOT NULL PRIMARY KEY,
 	pseudo VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
@@ -29,12 +29,13 @@ try {
 	echo "Error creating table: " . $e->getMessage();
 }
 
-$conn = null;
-*/
+// $conn = null;
+
+
 
 
 // CREATE THE TABLE MOVIES
-/*
+
 $sql = "CREATE TABLE movies (
 	id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	price DECIMAL(10,2) NOT NULL,
@@ -52,8 +53,8 @@ try {
 }
 
 // close the connection
-$conn = null;
-*/
+// $conn = null;
+
 
 
 // SEND MOVIES TO THE TABLE 
