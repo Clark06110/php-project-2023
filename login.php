@@ -24,30 +24,34 @@ require_once "components_project/project-header.php";
 </head>
 
 <button onclick="toggleForm()">Toggle Form</button>
+
+
 <form method="POST" action="hooks_project/loginForm.php" id="login-form">
-  <label for="email">Email:</label>
-  <input type="email" name="email" id="email">
-  <br>
-  <label for="password">Password:</label>
-  <input type="password" name="password" id="password">
-  <br>
-  <input type="submit" value="Log In">
+    <p>LOGIN</p>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <br>
+    <input type="submit" value="Log In">
 </form>
 
 <form method="POST" action="hooks_project/signForm.php" id="signin-form" style="display:none;">
-  <label for="email">Email:</label>
-  <input type="email" name="email" id="email">
-  <br>
-  <label for="pseudo">Pseudo:</label>
-  <input type="text" name="pseudo" id="pseudo">
-  <br>
-  <label for="password">Password:</label>
-  <input type="password" name="password" id="password">
-  <br>
-  <label for="confirmPassword">Confirm password:</label>
-  <input type="password" name="confirmPassword" id="confirmPassword">
-  <br>
-  <input type="submit" value="Sign In">
+    <p>SIGNIN</p>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email">
+    <br>
+    <label for="pseudo">Pseudo:</label>
+    <input type="text" name="pseudo" id="pseudo">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password">
+    <br>
+    <label for="confirmPassword">Confirm password:</label>
+    <input type="password" name="confirmPassword" id="confirmPassword">
+    <br>
+    <input type="submit" value="Sign In">
 </form>
 
 <?php
